@@ -10,6 +10,7 @@
       <Folder Include="Data\" />
       <Folder Include="Pages\Authors\" />
       <Folder Include="Pages\Books\" />
+      <Folder Include="Pages\Categories\" />
       <Folder Include="Pages\Publishers\" />
     </ItemGroup>
 
@@ -22,6 +23,11 @@
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
       <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="Pages\Authors\Index.cshtml" />
+      <None Include="Pages\Authors\Index.cshtml" />
     </ItemGroup>
 
 </Project>
