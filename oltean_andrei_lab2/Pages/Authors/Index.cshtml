@@ -1,9 +1,10 @@
 @page
 @model oltean_andrei_lab2.Pages.Authors.IndexModel
-
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Authors";
 }
+<h1>Authors</h1>
+
 
 <h1>Index</h1>
 
@@ -11,17 +12,17 @@
     <a asp-page="Create">Create New</a>
 </p>
 <table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Author[0].FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Author[0].LastName)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
+<thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Author.FirstOrDefault().FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author.FirstOrDefault().LastName)
+        </th>
+        <th></th>
+    </tr>
+</thead>
     <tbody>
 @foreach (var item in Model.Author) {
         <tr>

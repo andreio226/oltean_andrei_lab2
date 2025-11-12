@@ -21,6 +21,7 @@ namespace oltean_andrei_lab2.Pages.Authors
 
         public IList<Author> Author { get;set; } = default!;
 
+        // Aceasta este metoda corecta, simpla
         public async Task OnGetAsync()
         {
             Author = await _context.Author.ToListAsync();
