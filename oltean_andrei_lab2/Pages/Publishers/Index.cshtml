@@ -1,27 +1,25 @@
-@page "{id:int?}"
+@page
 @model oltean_andrei_lab2.Pages.Publishers.IndexModel
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Publishers";
 }
 
-<h1>Index</h1>
+<h1>Publishers</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
 </p>
-...
 <table class="table">
     <thead>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Publisher[0].PublisherName)
+            Publisher Name
         </th>
         <th></th>
     </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model.PublisherData.Publishers)
-    {
+    @foreach (var item in Model.PublisherData.Publishers) {
         string selectedRow = "";
         if (item.ID == Model.PublisherID)
         {
@@ -44,21 +42,20 @@
 
 @if (Model.PublisherData.Books != null)
 {
-    <h3>Books Edited by Selected Publisher</h3>
+    <h3>Books Published by Selected Publisher</h3>
     <table class="table">
         <tr>
             <th>Title</th>
             <th>Author</th>
+            <th>Price</th>
         </tr>
+        
         @foreach (var book in Model.PublisherData.Books)
         {
             <tr>
-                <td>
-                    @book.Title
-                </td>
-                <td>
-                    @book.Author.FullName
-                </td>
+                <td>@book.Title</td>
+                <td>@book.Author.FullName</td>
+                <td>@Html.DisplayFor(modelItem => book.Price)</td>
             </tr>
         }
     </table>

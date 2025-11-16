@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace oltean_andrei_lab2.Pages.Books
 {
+    [Authorize(Roles = "Admin,Client")]
     public class IndexModel : PageModel
     {
         private readonly oltean_andrei_lab2Context _context;
@@ -54,8 +55,10 @@ namespace oltean_andrei_lab2.Pages.Books
                 );
             }
             
+            // Aducem datele din baza de date in memorie
             BookD.Books = await booksIQ.ToListAsync();
 
+            // Sortarea se face in memorie pentru a evita InvalidOperationException pe FullName
             switch (sortOrder)
             {
                 case "title_desc":

@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace oltean_andrei_lab2.Pages.Authors
 {
+    [Authorize(Roles = "Admin,Client")]
     public class IndexModel : PageModel
     {
         private readonly oltean_andrei_lab2.Data.oltean_andrei_lab2Context _context;

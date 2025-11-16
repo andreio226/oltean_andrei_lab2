@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using oltean_andrei_lab2.Data;
 using Microsoft.AspNetCore.Identity;
 using oltean_andrei_lab2.Areas.Identity.Data;
@@ -14,15 +13,26 @@ builder.Services.AddDbContext<oltean_andrei_lab2Context>(options =>
 builder.Services.AddDbContext<LibraryIdentityContext>(options =>
     options.UseSqlite(connectionString));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => 
-    {
-        options.SignIn.RequireConfirmedAccount = true;
-    })
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+        options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<LibraryIdentityContext>();
 
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages(options =>
+{
+    options.Conventions.AuthorizeFolder("/Books");
+    options.Conventions.AuthorizePage("/Borrowings/Create");
+    options.Conventions.AllowAnonymousToPage("/Books/Index");
+    options.Conventions.AllowAnonymousToFolder("/Identity/Account");
+});
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    SeedData.Initialize(services);
+}
 
 if (!app.Environment.IsDevelopment())
 {
@@ -35,7 +45,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthentication(); 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();

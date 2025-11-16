@@ -1,12 +1,13 @@
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using oltean_andrei_lab2.Data;
 using oltean_andrei_lab2.Models;
 using oltean_andrei_lab2.ViewModels;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 
 namespace oltean_andrei_lab2.Pages.Categories
 {
+    [Authorize(Roles = "Admin")]
     public class IndexModel : PageModel
     {
         private readonly oltean_andrei_lab2.Data.oltean_andrei_lab2Context _context;
@@ -16,18 +17,17 @@ namespace oltean_andrei_lab2.Pages.Categories
             _context = context;
         }
 
-        public IList<Category> Category { get;set; } = default!;
-        
         public CategoryIndexData CategoryData { get; set; }
         public int CategoryID { get; set; }
+        public int BookID { get; set; }
 
-        public async Task OnGetAsync(int? id)
+        public async Task OnGetAsync(int? id, int? bookID)
         {
             CategoryData = new CategoryIndexData();
             CategoryData.Categories = await _context.Category
                 .Include(c => c.BookCategories)
                 .ThenInclude(bc => bc.Book)
-                .ThenInclude(b => b.Author) 
+                .ThenInclude(b => b.Author)
                 .OrderBy(c => c.CategoryName)
                 .ToListAsync();
 
