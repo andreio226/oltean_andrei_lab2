@@ -1,4 +1,5 @@
-public class AssignedCategoryData
+public class 
+    AssignedCategoryData
 {
     public int CategoryID { get; set; }
     public string Name { get; set; }

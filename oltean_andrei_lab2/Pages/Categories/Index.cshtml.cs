@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using oltean_andrei_lab2.Data;
 using oltean_andrei_lab2.Models;
 using oltean_andrei_lab2.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace oltean_andrei_lab2.Pages.Categories
 {

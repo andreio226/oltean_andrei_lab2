@@ -17,6 +17,9 @@ namespace oltean_andrei_lab2.Data
         public DbSet<oltean_andrei_lab2.Models.Book> Book { get; set; } = default!;
         public DbSet<oltean_andrei_lab2.Models.Publisher> Publisher { get; set; } = default!;
         public DbSet<oltean_andrei_lab2.Models.Author> Author { get; set; } = default!;
-        public DbSet<Category> Category { get; set; } = default!;
+        public DbSet<oltean_andrei_lab2.Models.Category> Category { get; set; } = default!;
+        
+        public DbSet<oltean_andrei_lab2.Models.Member> Member { get; set; } = default!;
+        public DbSet<oltean_andrei_lab2.Models.Borrowing> Borrowing { get; set; } = default!;
     }
 }

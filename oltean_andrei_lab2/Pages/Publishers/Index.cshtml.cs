@@ -1,5 +1,3 @@
-// Fisier: oltean_andrei_lab2/Pages/Publishers/Index.cshtml.cs
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +7,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using oltean_andrei_lab2.Data;
 using oltean_andrei_lab2.Models;
-using oltean_andrei_lab2.ViewModels; // Am adaugat acest using
+using oltean_andrei_lab2.ViewModels; 
+using Microsoft.AspNetCore.Authorization;
 
 namespace oltean_andrei_lab2.Pages.Publishers
 {
